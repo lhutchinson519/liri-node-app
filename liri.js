@@ -1,7 +1,13 @@
 //code you need to grab the data from keys.js. 
 //Then store the keys in a variable.
 var request = require("request");
-var movieName = process.argv[3];
+var movieName; //= process.argv[3];
+
+if (process.argv[3]){
+	movieName = process.argv[3];
+} else {
+	movieName = "Mr. Nobody";
+}
 var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=40e9cece";
 
 //fs package to read and write
@@ -17,6 +23,8 @@ var spotify = new Spotify({
 
 
 var Twitter = require('twitter');
+
+// console.log("\n\n\n\n********\n"+stuffINeed.twitterKeys.consumer_key);
 var client = new Twitter({
     consumer_key: 'OXJaxvnkLgxWEktQfG0As8CJw',
     consumer_secret: 'LwuBzMqqBkEh0m49AezHjDxvIvGbEhO5PJiWPnNSVm1AY1cFFF',
@@ -88,7 +96,7 @@ function spotifySong(songTitle = "The Sign") {
 // movie-this
 function movieThis() {
     // console.log(queryUrl);
-    
+
     request(queryUrl, function(error, response, body) {
 
         // If the request was successful...
@@ -127,3 +135,7 @@ function doWhatItSays() {
         }
     })
 };
+
+function setMovieName(argv3){
+
+}
